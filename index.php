@@ -26,20 +26,40 @@
 
   		$sql = "SELECT * FROM people WHERE( userId='$id' )";
 
+  		
+
   	include 'dbDisconnect.php';
 
   ?>
 
   <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
+    <td>Most.Ruksana Khatun</td>
+    <td>Rukshad</td>
+    <td>26-06-1994</td>
+    <td>rukshad.cse@gmail.com</td>
+    <td>Mohanpur</td>
+    <td>01767050959</td>
 
   </tr>
- 
+ <tr>
+    <td>Nishat Parvin</td>
+    <td>nishat</td>
+    <td>16-01-1993</td>
+    <td>nishatparvin93@gmail.com</td>
+    <td>Dinajpur</td>
+    <td>01738050959</td>
+
+  </tr>
+  <tr>
+    <td>MD Daloar Hossain</td>
+    <td>Daloar</td>
+    <td>26-06-1984</td>
+    <td>daloar@gmail.com</td>
+    <td>Mohanpur</td>
+    <td>01738347203</td>
+
+  </tr>
+
 </table>
 
 </body>
