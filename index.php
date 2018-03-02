@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<h1>Home Page</h1>
+	<h1>All Contacts</h1>
 	<p> / </p>
 	<table>
   <tr>
