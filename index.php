@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
+	<h1>Home Page</h1>
+	<p> / </p>
 	<table>
   <tr>
     <th>Full Name</th>
