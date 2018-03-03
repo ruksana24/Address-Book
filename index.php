@@ -6,63 +6,104 @@
 <html>
 <head>
 	<title>All Contact</title>
-	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-	<h1>All Contacts</h1>
-	<p> / </p>
-	<table>
-  <tr>
-    <th>Full Name</th>
-    <th>Nick Name</th>
-    <th>Birthdate</th>
-    <th>Web Site</th>
-    <th>Address</th>
-    <th>Phone</th>
 
-  </tr>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.php">AddressBook</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="addContact.php">Add Contact</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <?php
 
-  	include 'dbConnect.php';
+<div class="container">
+	<h2>All Contact</h2>
+	<hr/>
+	<br>
+	<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
 
-  		$sql = "SELECT * FROM people WHERE( userId='$id' )";
+            	<th>Full Name</th>
+			    <th>Nick Name</th>
+			    <th>Birthdate</th>
+			    <th>Web Site</th>
+			    <th>Address</th>
+			    <th>Phone</th>
+			    <th>Action</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Full Name</th>
+			    <th>Nick Name</th>
+			    <th>Birthdate</th>
+			    <th>Web Site</th>
+			    <th>Address</th>
+			    <th>Phone</th>
+			    <th>Action</th>
+            </tr>
+        </tfoot>
+        <tbody>
 
-  		
+        <?php
 
-  	include 'dbDisconnect.php';
+		  	include 'dbConnect.php';
 
-  ?>
+		  		$sql = "SELECT * FROM people WHERE( userId='$id' )";
+		  		$result = $conn->query($sql);
+                while($row = $result->fetch_assoc()) {
+                    echo '<tr>
+                    		<td>'.$row['fullName'].'</td>
+                    		<td>'.$row['nickName'].'</td>
+                    		<td>'.$row['birthDate'].'</td>
+                    		<td>'.$row['webSite'].'</td>
+                    		<td>'.$row['address'].'</td>
+                    		<td>'.$row['phone'].'</td>
 
-  <tr>
-    <td>Most.Ruksana Khatun</td>
-    <td>Rukshad</td>
-    <td>26-06-1994</td>
-    <td>rukshad.cse@gmail.com</td>
-    <td>Mohanpur</td>
-    <td>01767050959</td>
+                    		<td>
+                    			<form action="editContact.php" method = "get">
+                    			<button class="pull-left btn btn-primary" type ="submit" name ="peopleId" value="'.$row['id'].'" >Edit</button>
+                    			</form> 
 
-  </tr>
- <tr>
-    <td>Nishat Parvin</td>
-    <td>nishat</td>
-    <td>16-01-1993</td>
-    <td>nishatparvin93@gmail.com</td>
-    <td>Dinajpur</td>
-    <td>01738050959</td>
+                    			<form action="deleteContact.php" method = "post">
+                    			<button class="pull-right btn btn-danger " type ="submit" name ="peopleId" value="'.$row['id'].'" >X</button>
+                    			</form> 
+                    		</td>
 
-  </tr>
-  <tr>
-    <td>MD Daloar Hossain</td>
-    <td>Daloar</td>
-    <td>26-06-1984</td>
-    <td>daloar@gmail.com</td>
-    <td>Mohanpur</td>
-    <td>01738347203</td>
+                    	</tr>';
+                }
 
-  </tr>
+		  	include 'dbDisconnect.php';
 
-</table>
+		?>
+			</tbody>
+		</table>
+	</div>
+
+
+	<script type="text/javascript">
+		
+		$(document).ready(function() {
+    		$('#example').DataTable();
+		} );
+	</script>
 
 </body>
 </html>
