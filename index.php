@@ -37,6 +37,16 @@
 	<h2>All Contact</h2>
 	<hr/>
 	<br>
+
+
+<div class="col-sm-12 text-center">
+        <form  action="csvDownload.php" method="post">
+            <button id="csv_btn"  value="Download" type="submit" name="download_csv" class="btn btn-success">Download CSV</button>
+        </form>
+
+     </div>
+
+
 	<table id="example" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
