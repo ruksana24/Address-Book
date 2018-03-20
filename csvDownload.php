@@ -1,18 +1,17 @@
 <?php
-  include 'auth.php';
+  
+
+    include 'auth.php';
 
     include 'dbConnect.php';
-
-
 
     if(isset($_POST['download_csv'])) {
 
     $filename = "Contact_Information.csv";
-    $conn = fopen('php://output', 'w');
+    $fp = fopen('php://output', 'w');
 
-
- $header = array(
-        'Full Name',
+    $header = array(
+        'Full Name', 
         'Nick Name',
         'Birthdate',
         'Web Site',
@@ -20,13 +19,10 @@
         'Phone',
     
     );
-
     header('Content-type: application/csv');
     header('Content-Disposition: attachment; filename='.$filename);
-    fputcsv($fp, $header);
-
-    $csv_sql = "SELECT fullName,nickName,birthDate,webSite,address,phone FROM address-book where userId = '$id'";
-
+    fputcsv($fp, $header );
+    $csv_sql = "SELECT fullName,nickName,birthDate,webSite,address,phone FROM people where userId = '$id'";
     
 $csv_result = $conn->query($csv_sql);
     
@@ -34,8 +30,6 @@ $csv_result = $conn->query($csv_sql);
         fputcsv($fp, $row);
     }
     }
+   include 'dbDisconnect.php'; 
     
-
-    include 'dbDisconnect.php';
-
 ?>
